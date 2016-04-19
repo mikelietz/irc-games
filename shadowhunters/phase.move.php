@@ -8,7 +8,7 @@ class phaseMove {
   function __construct($root) {
     $this->r = $root;
     $this->desc = 'Player Moving';
-    $seven = false;
+    $this->seven = false;
   }
   function init() {
     $this->r->currentPlayer->init();
@@ -36,6 +36,9 @@ class phaseMove {
       }
       $this->cmdmove($from, array('A'));
     }
+  }
+  function cmdgoto($from, $args) {
+    $this->cmdmove($from, $args);
   }
   function cmdmove($from, $args) {
     if($this->seven) {
@@ -77,9 +80,9 @@ class phaseMove {
     $this->r->setPhase($newLocation->phase);
   }
   function rollMovement() {
+    $this->seven = false;
     while(true) {
       $dice = mt_rand(1, 4) + mt_rand(1, 6);
-      print_r($dice);
       if($dice == 7) {
         $this->seven = true;
         return;

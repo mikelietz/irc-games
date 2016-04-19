@@ -95,25 +95,6 @@ class incangold implements pluginInterface {
     }
   }
   function onQuit($from) {
-    /*
-     * Wait for their return.
-    echo "Processing On Quit\n";
-    if(isset($this->players[$from])) {
-      if($from == $this->currentPlayer) {
-        $this->nextPlayer(); 
-      }
-      $this->mChan("$from has left, and thus been eliminated! The current player is ".$this->currentPlayer.".");
-      unset($this->players[$from]);
-      unset($this->hands[$from]);
-      if(count($this->players) == 1) {
-        $winner = array_shift(array_keys($this->players));
-        $this->mChan("Only $winner remains! They win!");
-        $this->resetVars();
-        $this->mChan("A new game can now begin. Please !join if you would like to play again.");
-        return;
-      }
-    } 
-     */
   }
 
   /**
@@ -336,6 +317,7 @@ class incangold implements pluginInterface {
       if(in_array($card, $this->tableCards)) {
         $this->mChan("Pushing into the darkness, you come face to face with a menacing looking $card. Screaming like a little girl, you drop your bag of loot, and flee...The $card takes up your loot, and skips merrily away...");
         $this->newRound();
+        if(!($this->started)) return;
       }
       else {
         $this->mChan("As you delve deeper into the temple, you see a menacing looking $card. You sidestep down another path, fearing the worst...");

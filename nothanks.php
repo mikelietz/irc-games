@@ -69,7 +69,6 @@ class nothanks implements pluginInterface {
     }
   }
   function onQuit($from) {
-    echo "Processing On Quit\n";
     if(isset($this->players[$from])) {
       if($from == $this->currentPlayer) {
         $this->nextPlayer(); 
@@ -268,7 +267,7 @@ class nothanks implements pluginInterface {
     if($tChips == 1) $claimedChips = ' (with 1 chip)';
     else if($tChips > 1) $claimedChips = ' (with '.$tChips.' chips)';
     $this->mChan("$nick claimed the ".$tCard.$claimedChips.". Deck: ".count($this->drawDeck)." Card: {bold}** ".$this->currentCard." **{reset} Chips: ".$this->currentChips);
-    $this->nextPlayer();
+    //$this->nextPlayer();
     $chipC = $this->players[$this->currentPlayer];
     if($chipC == 1) $chipDesc = '1 chip';
     else if($chipC == 0) $chipDesc = 'no chips';
